@@ -25,7 +25,6 @@ app.get("/", (req, res) => {
                 console.log(`stderr: ${stderr}`);
                 return;
             }
-            console.log(`stdout: ${stdout}`);
         });
 
         console.log("Script started");
